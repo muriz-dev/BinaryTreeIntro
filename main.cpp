@@ -82,6 +82,13 @@ void preorder(Node* root) {
     preorder(root->right);
 }
 
+void postorder(Node* root) {
+    if (root == nullptr) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+
 bool search(Node* root, int data) {
     if (root == nullptr) return false;
     if (root->data == data) return true;
@@ -152,6 +159,10 @@ int main() {
     cout << endl;
 
     preorder(root);
+
+    cout << endl;
+
+    postorder(root);
 
     cout << endl;
 
