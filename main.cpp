@@ -75,6 +75,13 @@ void inorder(Node* root) {
     inorder(root->right);
 }
 
+void preorder(Node* root) {
+    if (root == nullptr) return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
 bool search(Node* root, int data) {
     if (root == nullptr) return false;
     if (root->data == data) return true;
@@ -98,7 +105,7 @@ Node* findMax(Node* root) {
 }
 
 int height(Node* root) {
-    if (root == nullptr) return 0;
+    if (root == nullptr) return -1;
     return 1 + max(height(root->left), height(root->right));
 }
 
@@ -127,18 +134,7 @@ int main() {
     root = insert(root, 3);
     root = insert(root, 25);
 
-    // Mengurutkan setiap node
-    inorder(root);
-
-    cout << endl;
-
-    // Mencari nilai terkecil pada BST
-    Node* min = findMin(root);
-    cout << "Nilai terkecil: " << min->data << endl;
-
-    // Mencari nilai terbesar pada BST
-    Node* max = findMax(root);
-    cout << "Nilai terbesar: " << max->data << endl;
+    cout << height(root) << endl;
 
     // Menghitung jumlah daun pada BST
     cout << "Jumlah daun: " << countLeaves(root);
@@ -146,16 +142,23 @@ int main() {
     cout << endl;
 
     // Menghapus node tertentu pada BST
-    deleteNode(root, 15); // Jika hanya menghapus 15 maka 18 akan menggantikannya sebagai daun
-    deleteNode(root, 18); // Jika hanya menghapus 18 maka 15 akan menggantikannya sebagai daun
+    // deleteNode(root, 15); // Jika hanya menghapus 15 maka 18 akan menggantikannya sebagai daun
+    // deleteNode(root, 18); // Jika hanya menghapus 18 maka 15 akan menggantikannya sebagai daun
+    // deleteNode(root, 9); // Jika hanya menghapus 18 maka 15 akan menggantikannya sebagai daun
 
     // Mengurutkan setiap node
     inorder(root);
 
     cout << endl;
 
+    preorder(root);
+
+    cout << endl;
+
     // Menghitung jumlah daun pada BST
-    cout << "Jumlah daun: " << countLeaves(root);
+    cout << "Jumlah daun: " << countLeaves(root) << endl;
+
+
 
     return 0;
 }
